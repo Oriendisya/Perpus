@@ -5,10 +5,18 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="{{route('front.index')}}">Halaman Utama</a>
       </li>
     </ul>
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('auth.register')}}">Daftar</a>
+      </li>
+    </ul>
+
   </div>
 </nav>
