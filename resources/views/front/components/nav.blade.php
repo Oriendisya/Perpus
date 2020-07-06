@@ -14,6 +14,9 @@
 
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
+        <a class="nav-link" href="{{route('auth.login')}}">Login</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="{{route('auth.register')}}">Daftar</a>
       </li>
     </ul>
