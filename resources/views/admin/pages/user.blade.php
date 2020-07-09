@@ -66,7 +66,7 @@
                 <select name="role" class="form-control">
                   <option value="" style="display: none">Pilih</option>
                   <option value="admin" {{(@$data->role == 'admin')? 'selected': ''}}>Admin</option>
-                  <option value="pengunjung" {{(@$data->role == 'pengunjung')? 'selected': ''}}>Pengunjung</option>
+                  <option value="peminjam" {{(@$data->role == 'peminjam')? 'selected': ''}}>Peminjam</option>
                 </select>
               </div>
             </div>

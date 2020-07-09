@@ -19,6 +19,7 @@ class CreatePeminjamenTable extends Migration
             $table->date('tanggal_pengembalian');
             $table->bigInteger('user_id');
             $table->bigInteger('denda');
+            $table->boolean('is_return')->nullable();
             $table->timestamps();
         });
     }

@@ -52,6 +52,7 @@ Route::prefix('admin')
     ]);
 
     Route::get('loan/datatable', 'LoanController@datatable')->name('loan.datatable');
+    Route::get('loan/return-book/{id}', 'LoanController@returnBook')->name('loan.return.book');
     Route::resource('loan', 'LoanController')->except([
         'destroy',
         'update',

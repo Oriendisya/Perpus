@@ -15,6 +15,7 @@ class CreateDetailPeminjamanTable extends Migration
     {
         Schema::create('detail_peminjaman', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('peminjaman_id');
             $table->bigInteger('book_id');
             $table->timestamps();
         });
