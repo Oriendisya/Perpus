@@ -11,6 +11,7 @@
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="{{url('assets/bootstrap/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{url('assets/datatable/datatables.min.css')}}">
 
   <!-- Favicons -->
   <style>
@@ -80,6 +81,7 @@
   </div>
   <script src="{{url('assets/js/jquery.min.js')}}"></script>
   <script src="{{url('assets/bootstrap/bootstrap.min.js')}}"></script>
+  <script src="{{url('assets/datatable/datatables.min.js')}}"></script>
   <script>
     $(document).ready(function () {
       let menu = $('.nav li a');
@@ -91,5 +93,7 @@
       });
     });
   </script>
+
+  @stack('script')
 
 </html>

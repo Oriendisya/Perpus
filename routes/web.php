@@ -35,8 +35,9 @@ Route::prefix('admin')
         'update',
     ]);
 
-    Route::post('user/destroy', 'UserController@destroy')->name('user.destroy');
-    Route::post('user/update', 'UserController@update')->name('user.update');
+    Route::get('user/datatable', 'UserController@datatable')->name('user.datatable');
+    Route::get('user/destroy/{id}', 'UserController@destroy')->name('user.destroy');
+    Route::post('user/update/{id}', 'UserController@update')->name('user.update');
     Route::resource('user', 'UserController')->except([
         'destroy',
         'update',

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
@@ -15,7 +18,21 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.user');
+        $data['action'] = route('admin.user.store');
+        return view('admin.pages.user', $data);
+    }
+
+    public function datatable()
+    {
+        return DataTables::of(User::where('id', '!=', Auth::user()->id))
+            ->addColumn('action', function(User $user) {
+                return "
+                    <a class='btn btn-sm btn-warning' href='".route('admin.user.edit', $user->id)."'>Edit</a>
+                    <a class='btn btn-sm btn-danger' href='".route('admin.user.destroy', $user->id)."'>Hapus</a>
+                ";
+            })
+            ->escapeColumns([])
+            ->make();
     }
 
     /**
@@ -45,6 +62,10 @@ class UserController extends Controller
             'password' => 'required',
         ]);
 
+        $request->merge([
+            'password' => Hash::make($request->password)
+        ]);
+
         User::create($request->all());
 
         return redirect()->back()->with(['success' => 'Data Berhasil Tersimpan']);
@@ -69,7 +90,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'data' => User::find($id),
+            'action' => route('admin.user.update', $id),
+        ];
+        return view('admin.pages.user', $data);
     }
 
     /**
@@ -81,7 +106,28 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validateWithBag('message', [
+            'name' => 'required',
+            'email' => 'required|email',
+            'address' => 'required',
+            'phone' => 'required|numeric',
+            'role' => 'required',
+        ]);
+
+        if ($request->password) {
+            $request->merge([
+                'password' => Hash::make($request->password)
+            ]);
+        }else{
+            unset($request['password']);
+        }
+
+        User::where('id', $id)->update($request->except([
+            '_token'
+        ]));
+
+        return redirect()->route('admin.user.index')
+            ->with(['success' => 'Data Berhasil Diubah']);
     }
 
     /**
@@ -92,6 +138,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::where('id', $id)->delete();
+
+        return redirect()->back()->with(['success' => 'Data Berhasil Dihapus']);
     }
 }
