@@ -8,7 +8,7 @@
           <p class="p-0 m-0">{{$msg}}</p>
         </div>
       @endif
-      Ini halaman dashboard
+      <h2>Selamat Datang</h2>
     </div>
   </div>
 @endsection

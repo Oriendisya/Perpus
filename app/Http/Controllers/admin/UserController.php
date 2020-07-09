@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.pages.user');
     }
 
     /**
@@ -35,7 +36,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validateWithBag('message', [
+            'name' => 'required',
+            'email' => 'required|email',
+            'address' => 'required',
+            'phone' => 'required|numeric',
+            'role' => 'required',
+            'password' => 'required',
+        ]);
+
+        User::create($request->all());
+
+        return redirect()->back()->with(['success' => 'Data Berhasil Tersimpan']);
     }
 
     /**
