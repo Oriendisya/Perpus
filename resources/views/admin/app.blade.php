@@ -12,6 +12,7 @@
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="{{url('assets/bootstrap/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{url('assets/datatable/datatables.min.css')}}">
+  <link rel="stylesheet" href="{{url('assets/daterangepicker/daterangepicker.css')}}">
 
   <!-- Favicons -->
   <style>
@@ -63,6 +64,11 @@
                 User
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('admin.book.index')}}">
+                Buku
+              </a>
+            </li>
           </ul>
 
           {{-- <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -82,6 +88,8 @@
   <script src="{{url('assets/js/jquery.min.js')}}"></script>
   <script src="{{url('assets/bootstrap/bootstrap.min.js')}}"></script>
   <script src="{{url('assets/datatable/datatables.min.js')}}"></script>
+  <script src="{{url('assets/moment/moment.min.js')}}"></script>
+  <script src="{{url('assets/daterangepicker/daterangepicker.js')}}"></script>
   <script>
     $(document).ready(function () {
       let menu = $('.nav li a');

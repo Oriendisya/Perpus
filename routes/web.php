@@ -42,4 +42,12 @@ Route::prefix('admin')
         'destroy',
         'update',
     ]);
+
+    Route::get('book/datatable', 'BookController@datatable')->name('book.datatable');
+    Route::get('book/destroy/{id}', 'BookController@destroy')->name('book.destroy');
+    Route::post('book/update/{id}', 'BookController@update')->name('book.update');
+    Route::resource('book', 'BookController')->except([
+        'destroy',
+        'update',
+    ]);
 });
