@@ -40,9 +40,6 @@ class LoanController extends Controller
         ]);
 
         return DataTables::of($data)
-            ->addColumn('denda_format', function(Peminjaman $loan) {
-                return 'Rp '.number_format($loan->denda);
-            })
             ->addColumn('book', function() use($data) {
                 $html = '<ul>';
 
@@ -57,9 +54,13 @@ class LoanController extends Controller
                 return $html;
             })
             ->addColumn('action', function(Peminjaman $loan) {
-                return "
-                    <a class='btn btn-sm btn-success' href='".route('admin.loan.return.book', $loan->id)."'>Kembalikan</a>
-                ";
+                $html = '';
+
+                if (!$loan->is_return) {
+                    $html = "<a class='btn btn-sm btn-success' href='".route('admin.loan.return.book', $loan->id)."'>Kembalikan</a>";
+                }
+                
+                return $html;
             })
             ->escapeColumns([])
             ->make();
