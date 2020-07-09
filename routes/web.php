@@ -50,4 +50,10 @@ Route::prefix('admin')
         'destroy',
         'update',
     ]);
+
+    Route::get('loan/datatable', 'LoanController@datatable')->name('loan.datatable');
+    Route::resource('loan', 'LoanController')->except([
+        'destroy',
+        'update',
+    ]);
 });

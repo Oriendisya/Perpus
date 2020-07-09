@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDetailPeminjamenTable extends Migration
+class CreateDetailPeminjamanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,9 +15,7 @@ class CreateDetailPeminjamenTable extends Migration
     {
         Schema::create('detail_peminjaman', function (Blueprint $table) {
             $table->id();
-            $table->date('tanggal_peminjaman');
-            $table->date('tanggal_pengembalian');
-            $table->string('keterangan_denda');
+            $table->bigInteger('book_id');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateDetailPeminjamenTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail_peminjaman');
+        Schema::dropIfExists('detail_peminjamen');
     }
 }
