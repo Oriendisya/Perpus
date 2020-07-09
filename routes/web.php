@@ -18,6 +18,7 @@ Route::get('/', 'AppController@index')->name('front.index');
 Route::get('/login', 'AuthController@login')->name('auth.login');
 Route::post('/login', 'AuthController@doLogin')->name('auth.do.login');
 Route::get('/register', 'AuthController@register')->name('auth.register');
+Route::post('/register', 'AuthController@doRegister')->name('auth.do.register');
 Route::get('/logout', 'AuthController@logout')->name('auth.logout');
 
 Route::prefix('admin')
